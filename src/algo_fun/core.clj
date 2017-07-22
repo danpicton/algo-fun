@@ -28,15 +28,11 @@
     m
     (recur n (mod m n))))
 
-(defn totient
+(defn totient 
   [n]
   "Returns the coprime numbers to n."
-  (loop [curr-num   1
-         coprime    []]
-    (if (> curr-num n)
-      coprime
-      (if (= 1 (gcd n curr-num))
-        (recur (inc curr-num)
-               (conj coprime curr-num))
-        (recur (inc curr-num)
-               coprime)))))
+  (let [gcd #(if (= 0 %2)
+               %
+               (recur %2 (mod % %2)))
+        nums (range 1 (inc n))]
+    (filter #(= 1 (gcd n %)) nums)))
