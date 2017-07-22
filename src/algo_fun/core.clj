@@ -20,3 +20,23 @@
                    (update-in [:sieve-hist] into
                                 (map #(hash-map :num % :fac curr-fac) caught)))
                (first dropped))))))
+
+(defn gcd
+  [m n]
+  "Returns the greatest common divisor of m and n."
+  (if (= 0 n)
+    m
+    (recur n (mod m n))))
+
+(defn totient
+  [n]
+  "Returns the coprime numbers to n."
+  (loop [curr-num   1
+         coprime    []]
+    (if (> curr-num n)
+      coprime
+      (if (= 1 (gcd n curr-num))
+        (recur (inc curr-num)
+               (conj coprime curr-num))
+        (recur (inc curr-num)
+               coprime)))))
