@@ -28,11 +28,12 @@
     m
     (recur n (mod m n))))
 
-(defn totient 
+(defn totient
   [n]
-  "Returns the coprime numbers to n."
+  "Returns the count of coprime numbers to n."
   (let [gcd #(if (= 0 %2)
                %
                (recur %2 (mod % %2)))
         nums (range 1 (inc n))]
-    (filter #(= 1 (gcd n %)) nums)))
+    (count 
+      (filter #(= 1 (gcd n %)) nums))))
