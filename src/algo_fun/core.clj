@@ -35,5 +35,5 @@
                %
                (recur %2 (mod % %2)))
         nums (range 1 (inc n))]
-    (count 
+    (count
       (filter #(= 1 (gcd n %)) nums))))
