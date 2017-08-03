@@ -38,13 +38,18 @@
     (count
       (filter #(= 1 (gcd n %)) nums))))
 
-(defn levenshtein
+(defn levenshtein  ; WIP
   [s1 s2]
-  (let [[shortest-string longest-string]   (sort-by count [s1 s2]) ; not sure if this is necessary
-        s-vec                              (vec shortest-string)
-        l-vec                              (vec longest-string)
-        transpose-matrix                   #(apply mapv vector %)]
-
-
-    (loop []))) ; s-vec l-vec edit-distance
-    ;(vector "l: " l-vec " s: " s-vec)))
+  (let [length-s1 (count s1)
+        length-s2 (count s2)
+        update-grid (fn [] nil)] ; this bit needs completing
+    (loop [grid (vec (repeat length-b))
+           x 0
+           y 0]
+     (cond
+       (>= y length-b
+           grid)
+       (> x length-a
+          (recur grid 0 (inc y)))
+       (<= x length-a
+           (recur (update-grid x y) (inc x) y))))))
