@@ -12,4 +12,4 @@
 (defn reset []
   (tnr/refresh :after 'user/start))
 
-(println "proto-repl-demo dev/user.clj loaded.")
+(println "algo-fun/dev/clj/user.clj loaded.")
