@@ -34,7 +34,7 @@
                  :font-family "Interface, sans-serif"
                  :font-weight "bold"
                  :align "left"}}
-        "Page header"])
+        "algo-fun: visualising algorithms written in Clojure with ClojureScript"])
 ;; -------------------------
 ;; Routes
 
