@@ -90,8 +90,8 @@
                                   [org.clojure/tools.nrepl "0.2.13"]
                                   [com.cemerick/piggieback "0.2.2"]
                                   [pjstadig/humane-test-output "0.8.2"]
-                                  [org.clojure/tools.namespace "0.2.11"]
-                                  [tupelo "0.9.37"]]
+                                  [org.clojure/tools.namespace "0.2.11"]]
+                                  ; [tupelo "0.9.37"]]
 
                    :source-paths ["env/dev/clj"]
                    :plugins [[lein-figwheel "0.5.13"]]

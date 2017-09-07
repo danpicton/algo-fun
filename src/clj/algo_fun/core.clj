@@ -1,6 +1,6 @@
 (ns algo-fun.core
-  (:require [clojure.repl :refer [doc source]]
-            [tupelo.core :as tup])
+  (:require [clojure.repl :refer [doc source]])
+            ; [tupelo.core :as tup])
   (:gen-class))
 
 (defn eratosthenes
