@@ -38,18 +38,18 @@
     (count
       (filter #(= 1 (gcd n %)) nums))))
 
-(defn levenshtein  ; WIP
-  [s1 s2]
-  (let [length-s1 (count s1)
-        length-s2 (count s2)
-        update-grid (fn [] nil)] ; this bit needs completing
-    (loop [grid (vec (repeat length-b))
-           x 0
-           y 0]
-     (cond
-       (>= y length-b
-           grid)
-       (> x length-a
-          (recur grid 0 (inc y)))
-       (<= x length-a
-           (recur (update-grid x y) (inc x) y))))))
+#_(defn levenshtein  ; WIP
+    [s1 s2]
+    (let [length-s1 (count s1)
+          length-s2 (count s2)
+          update-grid (fn [] nil)] ; this bit needs completing
+      (loop [grid (vec (repeat length-b))
+             x 0
+             y 0]
+       (cond
+         (>= y length-b
+             grid)
+         (> x length-a
+            (recur grid 0 (inc y)))
+         (<= x length-a
+             (recur (update-grid x y) (inc x) y))))))
