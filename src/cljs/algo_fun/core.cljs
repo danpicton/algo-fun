@@ -8,51 +8,25 @@
 
 (defn home-page []
   [:div [:h2 "Welcome to algo-fun"]
-   [:div [:a {:href "/about"} "go to about page"]]
-   [:div [:a {:href "/llama"} "go to llama"]]])
+   [:div [:a {:href "/about"} "go to about page"]]])
 
 (defn about-page []
   [:div [:h2 "About algo-fun"]
    [:div [:a {:href "/"} "go to the home page"]]])
 
-(defn llama-page []
-  [:div
-    [:h2 "A picture of a non-famous, but essential llama"]
-    [:div [:img {:src "http://www.windmillanimalfarm.co.uk/gallery/llamas_02b.jpg
- "}]]
-    [:div "Some plain text about a llama."]
-    [:div {:style {:font-family "Interface, sans-serif" :font-weight "bold"}} "Some jazzy llama text"]
-    [:div [:a {:href "/"} "go to the home page"]]])
-
-(defn page-head []
-  [:div {:style {:position "absolute"
-                 :top "0px"
-                 :width "100%"
-                 :left "0px"
-                 :backgroundColor "green"
-                 :color "white"
-                 :font-family "Interface, sans-serif"
-                 :font-weight "bold"
-                 :align "left"}}
-        "algo-fun: visualising algorithms written in Clojure with ClojureScript"])
 ;; -------------------------
 ;; Routes
 
 (def page (atom #'home-page))
 
 (defn current-page []
-  [:div
-   [page-head]
-   [@page]])
+  [:div [@page]])
 
 (secretary/defroute "/" []
   (reset! page #'home-page))
 
 (secretary/defroute "/about" []
   (reset! page #'about-page))
-
-(secretary/defroute "/llama" []
-  (reset! page #'llama-page))
 
 ;; -------------------------
 ;; Initialize app

@@ -1,8 +1,5 @@
 (ns user
-  (:require [clojure.tools.namespace.repl :as tnr]
-            [clojure.repl :refer [doc source]]
-            ; [tupelo.core :as tup]
-            [proto-repl.saved-values]))
+  (:require [clojure.tools.namespace.repl :as tnr]))
 
 (defn start
   []
@@ -12,4 +9,7 @@
 (defn reset []
   (tnr/refresh :after 'user/start))
 
-(println "algo-fun/dev/clj/user.clj loaded.")
+(println "proto-repl-demo dev/user.clj loaded.")
+
+; (load "../src/isbn_search/core")
+; (in-ns 'isbn-search.core)

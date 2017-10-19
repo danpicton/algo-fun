@@ -1,4 +1,4 @@
-(ns algo-fun.core
+(ns algo-fun.algos
   (:require [clojure.repl :refer [doc source]])
             ; [tupelo.core :as tup])
   (:gen-class))

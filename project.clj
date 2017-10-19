@@ -1,25 +1,24 @@
 (defproject algo-fun "0.1.0-SNAPSHOT"
-  :description "A small project visualising algorithms
-                  using Clojure and ClojureScript"
+  :description "FIXME: write description"
   :url "http://example.com/FIXME"
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
+
   :dependencies [[org.clojure/clojure "1.8.0"]
-                 [ring-server "0.4.0"]
+                 [ring-server "0.5.0"]
                  [reagent "0.7.0"]
                  [reagent-utils "0.2.1"]
                  [ring "1.6.2"]
                  [ring/ring-defaults "0.3.1"]
                  [compojure "1.6.0"]
-                 [metosin/compojure-api "2.0.0-alpha7"]
                  [hiccup "1.0.5"]
                  [yogthos/config "0.9"]
-                 [org.clojure/clojurescript "1.9.908"
+                 [org.clojure/clojurescript "1.9.946"
                   :scope "provided"]
                  [secretary "1.2.3"]
-                 [venantius/accountant "0.2.0"
-                  :exclusions [org.clojure/tools.reader]]
-                 [proto-repl "0.3.1"]]
+                 [venantius/accountant "0.2.0"]
+                 [proto-repl "0.3.1"
+                  :exclusions [org.clojure/tools.reader]]]
 
   :plugins [[lein-environ "1.0.2"]
             [lein-cljsbuild "1.1.5"]
@@ -67,7 +66,13 @@
               :source-map true
               :optimizations :none
               :pretty-print  true}}}}
-  ; :main ^:skip-aot algo-fun.core
+
+
+
+
+
+
+
   :figwheel
   {:http-server-root "public"
    :server-port 3449
@@ -78,23 +83,23 @@
    :ring-handler algo-fun.handler/app}
 
 
-  ; :target-path "target/%s"
 
-  :profiles {:dev {:repl-options
-                    {:nrepl-middleware [cemerick.piggieback/wrap-cljs-repl]}
-                   :dependencies [[binaryage/devtools "0.9.4"]
+  :profiles {:dev {:repl-options {:init-ns algo-fun.repl
+                                  :nrepl-middleware [cemerick.piggieback/wrap-cljs-repl]}
+
+                   :dependencies [[binaryage/devtools "0.9.7"]
                                   [ring/ring-mock "0.3.1"]
                                   [ring/ring-devel "1.6.2"]
                                   [prone "1.1.4"]
-                                  [figwheel-sidecar "0.5.13"]
+                                  [figwheel-sidecar "0.5.14"]
                                   [org.clojure/tools.nrepl "0.2.13"]
+                                  [org.clojure/tools.namespace "0.2.11"]
                                   [com.cemerick/piggieback "0.2.2"]
-                                  [pjstadig/humane-test-output "0.8.2"]
-                                  [org.clojure/tools.namespace "0.2.11"]]
-                                  ; [tupelo "0.9.37"]]
+                                  [pjstadig/humane-test-output "0.8.3"]]
+
 
                    :source-paths ["env/dev/clj"]
-                   :plugins [[lein-figwheel "0.5.13"]]
+                   :plugins [[lein-figwheel "0.5.14"]]
 
 
                    :injections [(require 'pjstadig.humane-test-output)

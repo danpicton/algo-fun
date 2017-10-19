@@ -1,14 +1,9 @@
 (ns algo-fun.handler
-  (:require ; omitted as in compojure-api
-            ;[compojure.core :refer [GET defroutes
-            ; [compojure.route :refer [not-found resources]]
-            [compojure.route :refer [resources]]
+  (:require [compojure.core :refer [GET defroutes]]
+            [compojure.route :refer [not-found resources]]
             [hiccup.page :refer [include-js include-css html5]]
             [algo-fun.middleware :refer [wrap-middleware]]
-            [config.core :refer [env]]
-            ;; added to integrate API functionality
-            [compojure.api.sweet :refer :all]
-            [ring.util.http-response :refer :all]))
+            [config.core :refer [env]]))
 
 (def mount-target
   [:div#app
@@ -32,11 +27,11 @@
      (include-js "/js/app.js")]))
 
 
-(defroutes app-routes
+(defroutes routes
   (GET "/" [] (loading-page))
   (GET "/about" [] (loading-page))
-
+  
   (resources "/")
   (not-found "Not Found"))
 
-(def app (wrap-middleware #'app-routes))
+(def app (wrap-middleware #'routes))
