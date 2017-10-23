@@ -1,5 +1,4 @@
-(ns algo-fun.algos
-  (:gen-class))
+(ns algo-fun.algos)
 
 (defn eratosthenes
   [n]

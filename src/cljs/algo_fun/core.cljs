@@ -15,8 +15,20 @@
   [:div [:h2 "Welcome to algo-fun"]
    [:div [:a {:href "/about"} "go to about page"]]])
 
+(defn grid-page []
+  [:svg
+    [:rect {:width 0.9, :height 0.9, :fill "purple", :x 0, :y 0}]
+    [:rect {:width 0.9, :height 0.9, :fill "purple", :x 0, :y 1}]
+    [:rect {:width 0.9, :height 0.9, :fill "purple", :x 0, :y 2}]
+    [:rect {:width 0.9, :height 0.9, :fill "purple", :x 1, :y 0}]
+    [:rect {:width 0.9, :height 0.9, :fill "purple", :x 1, :y 1}]
+    [:rect {:width 0.9, :height 0.9, :fill "purple", :x 1, :y 2}]
+    [:rect {:width 0.9, :height 0.9, :fill "purple", :x 2, :y 0}]
+    [:rect {:width 0.9, :height 0.9, :fill "purple", :x 2, :y 1}]
+    [:rect {:width 0.9, :height 0.9, :fill "purple", :x 2, :y 2}]])
 
-(def page (atom #'home-page))
+(def page (atom #'grid-page))
+; (def page (atom #'home-page))
 
 (defn current-page []
   [:div [@page]])
