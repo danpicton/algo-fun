@@ -1,34 +1,25 @@
 (ns algo-fun.core
     (:require [reagent.core :as reagent :refer [atom]]
               [secretary.core :as secretary :include-macros true]
-              [accountant.core :as accountant]))
+              [accountant.core :as accountant]
+              [algo-fun.algos :as algos]))
 
 ;; -------------------------
 ;; Views
+
+(def era-10 (algos/eratosthenes 10))
+(def era-20 (algos/eratosthenes 20))
+(def era-30 (algos/eratosthenes 30))
 
 (defn home-page []
   [:div [:h2 "Welcome to algo-fun"]
    [:div [:a {:href "/about"} "go to about page"]]])
 
-(defn about-page []
-  [:div [:h2 "About algo-fun"]
-   [:div [:a {:href "/"} "go to the home page"]]])
-
-;; -------------------------
-;; Routes
 
 (def page (atom #'home-page))
 
 (defn current-page []
   [:div [@page]])
-
-(secretary/defroute "/" []
-  (reset! page #'home-page))
-
-(secretary/defroute "/about" []
-  (reset! page #'about-page))
-
-;; -------------------------
 ;; Initialize app
 
 (defn mount-root []
