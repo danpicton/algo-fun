@@ -16,7 +16,9 @@
    [:div [:a {:href "/about"} "go to about page"]]])
 
 (defn grid-page []
-  [:svg
+  [:svg  {:view-box "0 0 3 3"
+           :width 500
+           :height 500}
     [:rect {:width 0.9, :height 0.9, :fill "purple", :x 0, :y 0}]
     [:rect {:width 0.9, :height 0.9, :fill "purple", :x 0, :y 1}]
     [:rect {:width 0.9, :height 0.9, :fill "purple", :x 0, :y 2}]
