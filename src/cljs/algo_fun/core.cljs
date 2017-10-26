@@ -16,20 +16,34 @@
    [:div [:a {:href "/about"} "go to about page"]]])
 
 (defn grid-page []
-  [:svg  {:view-box "0 0 3 3"
-           :width 500
-           :height 500}
-    [:rect {:width 0.9, :height 0.9, :fill "purple", :x 0, :y 0}]
-    [:rect {:width 0.9, :height 0.9, :fill "purple", :x 0, :y 1}]
-    [:rect {:width 0.9, :height 0.9, :fill "purple", :x 0, :y 2}]
-    [:rect {:width 0.9, :height 0.9, :fill "purple", :x 1, :y 0}]
-    [:rect {:width 0.9, :height 0.9, :fill "purple", :x 1, :y 1}]
-    [:rect {:width 0.9, :height 0.9, :fill "purple", :x 1, :y 2}]
-    [:rect {:width 0.9, :height 0.9, :fill "purple", :x 2, :y 0}]
-    [:rect {:width 0.9, :height 0.9, :fill "purple", :x 2, :y 1}]
-    [:rect {:width 0.9, :height 0.9, :fill "purple", :x 2, :y 2}]])
+  (let [vb "0 0 3 3"]
+      [:svg  {:view-box vb
+               :width 500
+               :height 500}
+        [:rect {:width 0.9, :height 0.9, :fill "purple", :x 0, :y 0}]
+        [:rect {:width 0.9, :height 0.9, :fill "purple", :x 0, :y 1}]
+        [:rect {:width 0.9, :height 0.9, :fill "purple", :x 0, :y 2}]
+        [:rect {:width 0.9, :height 0.9, :fill "purple", :x 1, :y 0}]
+        [:rect {:width 0.9, :height 0.9, :fill "purple", :x 1, :y 1}]
+        [:rect {:width 0.9, :height 0.9, :fill "purple", :x 1, :y 2}]
+        [:rect {:width 0.9, :height 0.9, :fill "purple", :x 2, :y 0}]
+        [:rect {:width 0.9, :height 0.9, :fill "purple", :x 2, :y 1}]
+        [:rect {:width 0.9, :height 0.9, :fill "purple", :x 2, :y 2}]]))
 
-(def page (atom #'grid-page))
+(defn grid-page-2
+  "Demonstrates parameterisation of component."
+  [n]
+  (let [vb (str "0 0 " n " " n)]
+      (fn []
+        [:svg  {:view-box vb
+                :width 500
+                :height 500}
+         (for [x (range n)
+               y (range n)]
+           [:rect {:width 0.9, :height 0.9, :fill "purple", :x x :y y}])])))
+
+(def page (atom (#'grid-page-2 15)))
+
 ; (def page (atom #'home-page))
 
 (defn current-page []
