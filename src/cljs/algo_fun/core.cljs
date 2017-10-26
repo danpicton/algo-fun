@@ -38,9 +38,9 @@
         [:svg  {:view-box vb
                 :width 500
                 :height 500}
-         (for [x (range n)
-               y (range n)]
-           [:rect {:width 0.9, :height 0.9, :fill "purple", :x x :y y}])])))
+         (for [x (range 10)
+               y (range (/ n 10))]
+           [:rect {:width 0.9, :height 0.9, :fill "#CCCCCC", :x x :y y}])])))
 
 (def page (atom (#'grid-page-2 15)))
 
