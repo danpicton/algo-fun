@@ -33,23 +33,39 @@
 (defn grid-page-2
   "Demonstrates parameterisation of component."
   [n]
-  (fn []
-    [:svg  {:view-box "0 0 500 500"
-            :width 500
-            :height 500}
-     (for [x (range 10)
-           y (range (/ n 10))]
-       (let [counter (+ 1 (* y 10) x)]
-         [:g
-          [:rect {:width 28, :height 28, :fill "#CCCCCC", :x (* x 30) :y (* y 30)}]
-          [:text {:x (+ (* x 30) 14)
-                  :y (+ (* 30 y) 20)
-                  ; :text-length 20 ; set this dependent on length of numbers
-                  :text-anchor "middle"
-                  :font-size "12"
-                  :font-family "Monospace"} counter]]))]))
+  ; (fn []
+  [:svg  {:view-box "0 0 500 500"
+          :width 500
+          :height 500}
+   (for [x (range 10)
+         y (range (/ n 10))]
+     (let [counter (+ 1 (* y 10) x)]
+       [:g
+        [:rect {:width 28, :height 28, :fill "#CCCCCC", :x (* x 30) :y (* y 30)}]
+        [:text {:x (+ (* x 30) 14)
+                :y (+ (* 30 y) 20)
+                ; :text-length 20 ; set this dependent on length of numbers
+                :text-anchor "middle"
+                :font-size "12"
+                :font-family "Monospace"} counter]]))])
 
-(def page (atom (#'grid-page-2 150)))
+(defn input-and-button
+  []
+  [:div
+   [:svg {:width 120 :height 60}
+     [:g
+       [:rect {:width 120 :height 45 :fill "#CCCC00" :on-click #(println "clicked")}]
+       [:text {:x 60 :y 25 :text-anchor "middle" :font-size "12" :font-family "Calibri"} "Sieve on"]]]])
+
+(defn page-root
+  []
+  [:div
+     [:h2 "Sieve of Eratosthenes"]
+     (input-and-button)
+     (grid-page-2 15)])
+
+(def page (atom page-root))
+; (def page (atom (#'grid-page-2 15)))
 
 ; (def page (atom #'home-page))
 
