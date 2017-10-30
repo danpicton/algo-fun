@@ -52,10 +52,15 @@
 (defn input-and-button
   []
   [:div
-   [:svg {:width 120 :height 60}
+   [:svg {:width 300 :height 60}
      [:g
-       [:rect {:width 120 :height 45 :fill "#CCCC00" :on-click #(println "clicked")}]
-       [:text {:x 60 :y 25 :text-anchor "middle" :font-size "12" :font-family "Calibri"} "Sieve on"]]]])
+       [:rect {:x 0 :y 0 :width 120 :height 45 :fill "#CCCC00" :on-click #(println "clicked")}]
+       [:text {:x 60 :y 25 :text-anchor "middle" :font-size "12" :font-family "Calibri"} "Sieve on"]]
+     [:g
+       [:rect {:x 125 :y 0 :width 150 :height 45 :fill "gray"}]
+       [:foreignObject {:x 130 :y 5}
+         [:div {:xmlns "http://www.w3.org/1999/xhtml"}]
+         [:input {:type "text" :border "none"}]]]]])
 
 (defn page-root
   []
