@@ -7,4 +7,4 @@
 
 (enable-console-print!)
 
-(core/init!)
+; (core/init!)
