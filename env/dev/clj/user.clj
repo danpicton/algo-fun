@@ -16,6 +16,9 @@
 (defn fig-stop []
   (repl-api/stop-figwheel!))
 
+(defn cljs-repl []
+  (repl-api/cljs-repl))
+
 (println "proto-repl-demo dev/user.clj loaded.")
 
 ; (load "../src/isbn_search/core")
