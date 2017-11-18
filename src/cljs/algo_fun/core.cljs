@@ -2,11 +2,15 @@
     (:require [reagent.core :as reagent :refer [atom]]
               [algo-fun.algos :as algos]))
 
+(enable-console-print!)
+
 (println "Printing from src/cljs/algo_fun/core.cljs")
 
 (def era-10 (algos/eratosthenes 10))
 (def era-20 (algos/eratosthenes 20))
 (def era-30 (algos/eratosthenes 30))
+
+(def html-colours ["MediumSpringGreens"])
 
 (def app-state (atom era-10))
 
@@ -63,6 +67,8 @@
      (input-and-button)
      [:div (grid-page)]]))
 
+(defn on-js-reload []
+  (reagent/render [page-root] (.getElementById js/document "app")))
 
 ; (defn current-page []
 ;   [:div [page-root]])
