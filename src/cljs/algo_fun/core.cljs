@@ -11,7 +11,7 @@
 (def era-30 (algos/eratosthenes 30))
 
 (def html-colours ["MediumSpringGreen" "Coral" "MediumAquaMarine" "Orchid"
-                   "Gold" "Plum" "Yellow" "YellowGreen" "Crimson" "Orange" 
+                   "Gold" "Plum" "Yellow" "YellowGreen" "Crimson" "Orange"
                    "Light Salmon"])
 
 (def app-state (atom era-10))
@@ -38,35 +38,22 @@
 (defn input-and-button
   []
   [:div
-   [:svg {:width 300 :height 60}
-     [:g
-       [:rect {:x 0
-               :y 0
-               :width 120
-               :height 45
-               :fill "#CCCC00"
-               :on-click (fn [e]
-                           (swap! @app-state assoc {} (algos/eratosthenes (.-value (.getElementById js/document "sieve-size")))))}]
+   [:button
+     {:on-click (fn [e]
+                 (swap! @app-state assoc {} (algos/eratosthenes (.-value (.getElementById js/document "sieve-size")))))}
               ;  :on-click #(println (.-value (.getElementById js/document "sieve-size")))}]
-       [:text {:x 60 :y 25 :text-anchor "middle" :font-size "12" :font-family "Calibri"} "Sieve on"]]
-     [:foreignObject {:x 125 :y 0}
-       [:div {:xmlns "http://www.w3.org/1999/xhtml"}
-        [:input {:type "text"
-                 :id "sieve-size"
-                 :style {:border "1px solid red"
-                         :background-color "#DDDDDD"
-                         :width 158
-                         :height 40
-                         :font-size 25
-                         :font-family "Calibri"
-                         :padding-left "7px"
-                         :padding-right "7px"}}]]]]])
+    "Sieve on"]
+   [:input {:type "text"
+            :id "sieve-size"
+            :style {:width "100"}}]])
+
 
 (defn page-root
   ([]
    [:div
      [:h2 "Sieve of Eratosthenes"]
      (input-and-button)
+     [:br]
      [:div (grid-page)]]))
 
 (defn on-js-reload []
