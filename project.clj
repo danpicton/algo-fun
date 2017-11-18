@@ -57,7 +57,7 @@
               :pretty-print  false}}
             :app
             {:source-paths ["src/cljs" "src/cljc" "env/dev/cljs"]
-             :figwheel {:on-jsload "algo-fun.core/mount-root"}
+             :figwheel {:on-jsload "algo-fun.core/on-js-reload"}
              :compiler
              {:main "algo-fun.dev"
               :asset-path "/js/out"
