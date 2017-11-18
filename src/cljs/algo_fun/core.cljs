@@ -10,7 +10,9 @@
 (def era-20 (algos/eratosthenes 20))
 (def era-30 (algos/eratosthenes 30))
 
-(def html-colours ["MediumSpringGreens"])
+(def html-colours ["MediumSpringGreen" "Coral" "MediumAquaMarine" "Orchid"
+                   "Gold" "Plum" "Yellow" "YellowGreen" "Crimson" "Orange" 
+                   "Light Salmon"])
 
 (def app-state (atom era-10))
 
