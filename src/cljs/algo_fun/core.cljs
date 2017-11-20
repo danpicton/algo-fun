@@ -14,7 +14,7 @@
                    "Gold" "Plum" "Yellow" "YellowGreen" "Crimson" "Orange"
                    "Light Salmon"])
 
-(def app-state (atom (range 10)))
+(def app-state (atom ()))
 
 (defn grid-page
   "Demonstrates parameterisation of component."
@@ -26,14 +26,15 @@
      (for [x (range 10)
            y (range (/ n 10))]
        (let [counter (+ 1 (* y 10) x)]
-         [:g
-          [:rect {:width 28, :height 28, :fill "#CCCCCC", :x (* x 30) :y (* y 30)}]
-          [:text {:x (+ (* x 30) 14)
-                  :y (+ (* 30 y) 20)
-                  ; :text-length 20 ; set this dependent on length of numbers
-                  :text-anchor "middle"
-                  :font-size "12"
-                  :font-family "Monospace"} counter]]))]))
+         (if (<= counter n)
+           [:g
+            [:rect {:width 28, :height 28, :fill "#CCCCCC", :x (* x 30) :y (* y 30)}]
+            [:text {:x (+ (* x 30) 14)
+                    :y (+ (* 30 y) 20)
+                    ; :text-length 20 ; set this dependent on length of numbers
+                    :text-anchor "middle"
+                    :font-size "12"
+                    :font-family "Monospace"} counter]])))]))
 
 (defn input-and-button
   []
