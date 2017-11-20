@@ -14,12 +14,12 @@
                    "Gold" "Plum" "Yellow" "YellowGreen" "Crimson" "Orange"
                    "Light Salmon"])
 
-(def app-state (atom era-10))
+(def app-state (atom (range 10)))
 
 (defn grid-page
   "Demonstrates parameterisation of component."
   []
-  (let [n (count (:sieve-hist @app-state))]
+  (let [n (count @app-state)]
     [:svg  {:view-box "0 0 500 500"
             :width 500
             :height 500}
@@ -40,7 +40,7 @@
   [:div
    [:button
      {:on-click (fn [e]
-                 (swap! @app-state assoc {} (algos/eratosthenes (.-value (.getElementById js/document "sieve-size")))))}
+                 (swap! app-state #(range (.-value (.getElementById js/document "sieve-size")))))}
               ;  :on-click #(println (.-value (.getElementById js/document "sieve-size")))}]
     "Sieve on"]
    [:input {:type "text"
