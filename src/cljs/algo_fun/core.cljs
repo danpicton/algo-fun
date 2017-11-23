@@ -19,22 +19,27 @@
 (defn grid-page
   "Demonstrates parameterisation of component."
   []
-  (let [n (count @app-state)]
+  (let [numbers   (count @app-state)]
+        ; sieve-map (algos/eratosthenes @app-state)
+        ; primes    (:primes sieve-map)]
     [:svg  {:view-box "0 0 500 500"
             :width 500
             :height 500}
      (for [x (range 10)
-           y (range (/ n 10))]
-       (let [counter (+ 1 (* y 10) x)]
-         (if (<= counter n)
+           y (range (/ numbers 10))]
+       (let [counter    (+ 1 (* y 10) x)
+             curr-box   (get @app-state (keyword (str "box-" counter)))]
+         (println (:col curr-box))
+         (if (<= counter numbers)
            [:g
-            [:rect {:width 28, :height 28, :fill "#CCCCCC", :x (* x 30) :y (* y 30)}]
+            [:rect {:width 28, :height 28, :fill (or (:col curr-box) "#CCCCCC"), :x (* x 30) :y (* y 30)}]
             [:text {:x (+ (* x 30) 14)
                     :y (+ (* 30 y) 20)
                     ; :text-length 20 ; set this dependent on length of numbers
                     :text-anchor "middle"
                     :font-size "12"
                     :font-family "Monospace"} counter]])))]))
+
 
 (defn input-and-button
   []
@@ -46,7 +51,8 @@
     "Sieve on"]
    [:input {:type "text"
             :id "sieve-size"
-            :style {:width "100"}}]])
+            :style {:width "100px"}}]])
+
 
 
 (defn page-root
@@ -64,3 +70,41 @@
 ;   [:div [page-root]])
 
 (reagent/render [page-root] (.getElementById js/document "app"))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; REPL experiments
+#_(let [r (range 5)]
+    (apply hash-map (interleave (map #(keyword (str "k" %)) r) r)))
+;; or use zipmap
+
+#_(let [r (range 5)]
+    (zipmap (map #(keyword (str "box-" %)) r)))
+
+#_(assoc-in {} [:cats :dogs] "1")
+
+;; intended state
+#_{:box-1 {:val 1} :box-2 {:val 2 :col "Orchid"} :box-3 {:val 3 :col "Coral"}}
+
+;; swap app-state with very basic state map
+#_(swap! algo-fun.core/app-state #(hash-map :box-1 {:val 1} :box-2 {:val 2 :col "Orchid"} :box-3 {:val 3 :col "Coral"}))
+
+;; filter factorials based on prime (2 in this case)
+#_(let [e6 (algo-fun.algos/eratosthenes 6)] ,,,
+    (filter #(= (:fac %) 2) (:sieve-hist e6)))
+
+;; using a for to iterate over the output...
+;; only prints for now, but you can do what you want with each map
+#_(let [e6 (algo-fun.algos/eratosthenes 6)]
+    (for [sieve (:sieve-hist e6)]
+      (println "Number: " (:num sieve) " and factorial " (:fac sieve))))
+
+;; initial attempt at building structure to create state map with 1 second
+;; intervals.
+#_(let [e (algos/eratosthenes 10)
+        primes (:primes e)]
+    (for [n     (range (inc (count (:sieve-hist e))))]
+          ; fac   (filter #(= (:fac %) prime) (:sieve-hist e))]
+      (let [an (inc n)]
+        (if (contains? (set primes) an)
+          (println (str an " - prime"))
+          (println an)))))
