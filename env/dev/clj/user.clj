@@ -19,7 +19,4 @@
 (defn cljs-repl []
   (repl-api/cljs-repl))
 
-(println "proto-repl-demo dev/user.clj loaded.")
-
-; (load "../src/isbn_search/core")
-; (in-ns 'isbn-search.core)
+(println "algo-fun dev/clj/user.clj loaded.")
