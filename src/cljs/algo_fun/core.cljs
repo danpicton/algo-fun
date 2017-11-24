@@ -100,11 +100,22 @@
 
 ;; initial attempt at building structure to create state map with 1 second
 ;; intervals.
-#_(let [e (algos/eratosthenes 10)
-        primes (:primes e)]
-    (for [n     (range (inc (count (:sieve-hist e))))]
-          ; fac   (filter #(= (:fac %) prime) (:sieve-hist e))]
-      (let [an (inc n)]
-        (if (contains? (set primes) an)
-          (println (str an " - prime"))
-          (println an)))))
+#_(let [in-val     30
+        sieve-map  (algos/eratosthenes in-val)
+        primes (:primes sieve-map)
+        col-map (zipmap (map #(keyword (str %)) primes) html-colours)
+        pretend-state (atom {})]
+    (for [current-num     (map inc (range in-val))]
+      (if (contains? (set primes) current-num)
+        ; (println (str current-num " - prime"))
+        (swap! pretend-state
+               #(assoc @pretend-state
+                       (keyword (str "box-" current-num))
+                       {:val current-num
+                        :col (get col-map (keyword (str current-num)))}))
+        (swap! pretend-state
+               #(assoc @pretend-state
+                       (keyword (str "box-" current-num))
+                       {:val current-num
+                        :col nil})))))
+        ; (println current-num))))
